@@ -1,16 +1,22 @@
-import { Injectable } from '../../node_modules/@nestjs/common';
-import { InjectModel } from '../../node_modules/@nestjs/mongoose';
+import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { BlogPost } from './posts.interface';
 
 @Injectable()
-export class BlogPostService {
+export class BlogPostsService {
     constructor(
         @InjectModel('BlogPost') private readonly postModel: Model<BlogPost>,
     ) { }
 
     async findAll(): Promise<BlogPost[]> {
         return await this.postModel.find().exec();
+    }
+
+    async findOne(id): Promise<BlogPost> {
+        return await this.postModel.findById( id, (err, res) => {
+            return res;
+        });
     }
 
     async createPost(newPost): Promise<BlogPost> {

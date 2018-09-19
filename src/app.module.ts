@@ -4,7 +4,7 @@ import { AppService } from 'app.service';
 import { CompaniesController } from 'companies/companies.controller';
 import { BlogPostsController } from 'posts/posts.controller';
 import { MongooseModule } from '@nestjs/mongoose';
-import { PostsModule } from 'posts/post.module';
+import { PostsModule } from 'posts/posts.module';
 
 @Module({
     imports: [
